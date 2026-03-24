@@ -14,14 +14,15 @@
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-router-dom": "^6.30.3",
-    "sass": "^1.98.0",
     "zustand": "^5.0.12"
   },
   "devDependencies": {
     "@rsbuild/core": "^1.7.1",
     "@rsbuild/plugin-react": "^1.4.2",
+    "@rsbuild/plugin-sass": "^1.5.1",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
+    "sass": "^1.98.0",
     "typescript": "^5.9.3"
   },
   "description": "Install the dependencies:",
