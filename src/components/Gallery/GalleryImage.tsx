@@ -7,8 +7,12 @@
 import React, { useState } from 'react';
 import { useLikeImage } from '../../hooks/useLikeImage';
 import { useGalleryStore } from '../../stores/galleryStore';
-import type { Image } from '../../api/mockData';
+import type { Image, Comment } from '../../api/mockData';
 import styles from './GalleryImage.module.scss';
+
+// Stable empty array — prevents Zustand v5 getSnapshot from returning a new reference
+// on every render, which causes React 19's useSyncExternalStore infinite loop check to fire.
+const EMPTY_COMMENTS: Comment[] = [];
 
 interface GalleryImageProps {
   image: Image;
@@ -27,7 +31,7 @@ const GalleryImage: React.FC<GalleryImageProps> = ({ image, onClick, showChild =
   const [imgError, setImgError] = useState(false);
 
   const { likeImage, getLikeState } = useLikeImage();
-  const comments = useGalleryStore((s) => s.comments[image.id] ?? []);
+  const comments = useGalleryStore((s) => s.comments[image.id] ?? EMPTY_COMMENTS);
 
   const likeState = getLikeState(image.id);
   const likeCount = likeState.count || image.likes;
