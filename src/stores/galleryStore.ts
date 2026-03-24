@@ -2,7 +2,7 @@
  * galleryStore.ts - Zustand store for gallery state
  */
 import { create } from 'zustand';
-import { devtools } from 'zustand/middleware';
+import { devtools, subscribeWithSelector } from 'zustand/middleware';
 import type { Image, Comment } from '../api/mockData';
 
 interface GalleryState {
@@ -33,39 +33,41 @@ const initialState = {
 };
 
 export const useGalleryStore = create<GalleryState>()(
-  devtools(
-    (set, get) => ({
-      ...initialState,
+  subscribeWithSelector(
+    devtools(
+      (set, get) => ({
+        ...initialState,
 
-      setCurrentImages: (images) => set({ currentImages: images }, false, 'setCurrentImages'),
-      setGrowthImages: (images) => set({ growthImages: images }, false, 'setGrowthImages'),
-      appendCurrentImages: (images) => set((s) => ({ currentImages: [...s.currentImages, ...images] }), false, 'appendCurrentImages'),
-      appendGrowthImages: (images) => set((s) => ({ growthImages: [...s.growthImages, ...images] }), false, 'appendGrowthImages'),
+        setCurrentImages: (images) => set({ currentImages: images }, false, 'setCurrentImages'),
+        setGrowthImages: (images) => set({ growthImages: images }, false, 'setGrowthImages'),
+        appendCurrentImages: (images) => set((s) => ({ currentImages: [...s.currentImages, ...images] }), false, 'appendCurrentImages'),
+        appendGrowthImages: (images) => set((s) => ({ growthImages: [...s.growthImages, ...images] }), false, 'appendGrowthImages'),
 
-      setLike: (imageId, count, liked) =>
-        set((s) => ({ likes: { ...s.likes, [imageId]: { count, liked } } }), false, 'setLike'),
+        setLike: (imageId, count, liked) =>
+          set((s) => ({ likes: { ...s.likes, [imageId]: { count, liked } } }), false, 'setLike'),
 
-      initializeLikes: (images) => {
-        const current = get().likes;
-        const updates: Record<string, { count: number; liked: boolean }> = {};
-        images.forEach((img) => {
-          if (!current[img.id]) updates[img.id] = { count: img.likes, liked: false };
-        });
-        if (Object.keys(updates).length > 0) {
-          set((s) => ({ likes: { ...s.likes, ...updates } }), false, 'initializeLikes');
-        }
-      },
+        initializeLikes: (images) => {
+          const current = get().likes;
+          const updates: Record<string, { count: number; liked: boolean }> = {};
+          images.forEach((img) => {
+            if (!current[img.id]) updates[img.id] = { count: img.likes, liked: false };
+          });
+          if (Object.keys(updates).length > 0) {
+            set((s) => ({ likes: { ...s.likes, ...updates } }), false, 'initializeLikes');
+          }
+        },
 
-      addComment: (imageId, comment) =>
-        set((s) => ({
-          comments: { ...s.comments, [imageId]: [...(s.comments[imageId] ?? []), comment] },
-        }), false, 'addComment'),
+        addComment: (imageId, comment) =>
+          set((s) => ({
+            comments: { ...s.comments, [imageId]: [...(s.comments[imageId] ?? []), comment] },
+          }), false, 'addComment'),
 
-      setComments: (imageId, comments) =>
-        set((s) => ({ comments: { ...s.comments, [imageId]: comments } }), false, 'setComments'),
+        setComments: (imageId, comments) =>
+          set((s) => ({ comments: { ...s.comments, [imageId]: comments } }), false, 'setComments'),
 
-      reset: () => set(initialState, false, 'reset'),
-    }),
-    { name: 'GalleryStore' }
+        reset: () => set(initialState, false, 'reset'),
+      }),
+      { name: 'GalleryStore' },
+    )
   )
 );
