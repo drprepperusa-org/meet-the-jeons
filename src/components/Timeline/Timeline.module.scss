@@ -1,0 +1,187 @@
+@use '../../styles/variables' as *;
+
+// ─── Timeline Container ────────────────────────────────────────────────────────
+
+.timeline {
+  width: 100%;
+  padding: $space-8 0;
+}
+
+.track {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: $space-8 0;
+}
+
+// ─── Center Line ──────────────────────────────────────────────────────────────
+
+.line {
+  display: none;
+
+  @media (min-width: $bp-md) {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      $color-beige-medium 10%,
+      $color-terracotta-light 50%,
+      $color-beige-medium 90%,
+      transparent
+    );
+    transform: translateX(-50%);
+  }
+}
+
+// ─── Timeline Item ────────────────────────────────────────────────────────────
+
+.item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: $space-8;
+  padding-left: $space-12;
+
+  @media (min-width: $bp-md) {
+    flex-direction: row;
+    align-items: flex-start;
+    width: 50%;
+    padding: 0 $space-10;
+    margin-bottom: $space-12;
+
+    &.left {
+      align-self: flex-start;
+      left: 0;
+      text-align: right;
+      align-items: flex-end;
+      padding-right: $space-10;
+      padding-left: 0;
+
+      .card {
+        align-items: flex-end;
+        text-align: right;
+      }
+    }
+
+    &.right {
+      left: 50%;
+      text-align: left;
+      align-items: flex-start;
+      padding-left: $space-10;
+      padding-right: 0;
+    }
+  }
+}
+
+// ─── Dot ──────────────────────────────────────────────────────────────────────
+
+.dot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: $color-warm-white;
+  border: 2px solid $color-beige-medium;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: $shadow-md;
+  z-index: 1;
+  transition: all $transition-base;
+  flex-shrink: 0;
+
+  .item:hover & {
+    border-color: $color-terracotta;
+    box-shadow: 0 0 0 4px rgba($color-terracotta, 0.12), $shadow-md;
+    transform: scale(1.1);
+  }
+
+  .highlighted & {
+    background: $color-terracotta;
+    border-color: $color-terracotta;
+    box-shadow: 0 0 0 4px rgba($color-terracotta, 0.15), $shadow-md;
+  }
+
+  @media (min-width: $bp-md) {
+    position: absolute;
+    top: 0;
+
+    .left & {
+      right: -22px;
+      left: auto;
+    }
+
+    .right & {
+      left: -22px;
+    }
+  }
+}
+
+.dotIcon {
+  font-size: $text-xl;
+  line-height: 1;
+
+  .highlighted & {
+    filter: brightness(10);
+  }
+}
+
+// ─── Card ─────────────────────────────────────────────────────────────────────
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+  background: $color-warm-white;
+  border: 1px solid $color-beige;
+  border-radius: $border-radius-lg;
+  padding: $space-5 $space-6;
+  box-shadow: $shadow;
+  transition: all $transition-base;
+  min-width: 0;
+
+  .item:hover & {
+    box-shadow: $shadow-md;
+    border-color: $color-terracotta-light;
+    transform: translateY(-2px);
+  }
+
+  .highlighted & {
+    background: linear-gradient(135deg, rgba($color-terracotta, 0.04), rgba($color-gold, 0.04));
+    border-color: rgba($color-terracotta, 0.25);
+  }
+}
+
+.year {
+  font-family: $font-sans;
+  font-size: $text-xs;
+  font-weight: $font-bold;
+  color: $color-terracotta;
+  letter-spacing: $tracking-wider;
+  text-transform: uppercase;
+}
+
+.title {
+  font-family: $font-serif;
+  font-size: $text-lg;
+  font-weight: $font-semibold;
+  color: $color-text-primary;
+  margin: 0;
+  line-height: $leading-snug;
+}
+
+.description {
+  font-family: $font-sans;
+  font-size: $text-sm;
+  color: $color-text-secondary;
+  line-height: $leading-relaxed;
+  margin: 0;
+}

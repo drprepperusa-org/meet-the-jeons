@@ -1,0 +1,189 @@
+@use '../../styles/variables' as *;
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+
+  @include respond-to(md) {
+    gap: $space-1;
+  }
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  gap: $space-1;
+  flex-direction: row;
+}
+
+.navItem {
+  position: relative;
+}
+
+.navLink {
+  display: inline-flex;
+  align-items: center;
+  padding: $space-2 $space-4;
+  font-family: $font-sans;
+  font-size: $text-sm;
+  font-weight: $font-medium;
+  letter-spacing: $tracking-wider;
+  text-transform: uppercase;
+  color: $color-text-secondary;
+  border-radius: $border-radius;
+  transition: color $transition-base, background-color $transition-base;
+  white-space: nowrap;
+  cursor: pointer;
+
+  @include respond-to(lg) {
+    padding: $space-2 $space-5;
+    font-size: $text-sm;
+  }
+
+  // Underline indicator
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: $color-terracotta;
+    border-radius: $border-radius-full;
+    transition: width $transition-base;
+  }
+
+  &:hover {
+    color: $color-terracotta;
+    background-color: rgba($color-terracotta, 0.06);
+
+    &::after {
+      width: 60%;
+    }
+  }
+
+  &.active {
+    color: $color-terracotta;
+    font-weight: $font-semibold;
+
+    &::after {
+      width: 60%;
+    }
+  }
+}
+
+// Mobile menu (hamburger)
+.mobileMenuBtn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: $space-2;
+  border-radius: $border-radius;
+  cursor: pointer;
+  background: none;
+  border: none;
+  transition: background-color $transition-base;
+  
+  @include respond-to(md) {
+    display: none;
+  }
+
+  &:hover {
+    background-color: rgba($color-terracotta, 0.08);
+  }
+
+  span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background-color: $color-text-primary;
+    border-radius: $border-radius-full;
+    transition: transform $transition-base, opacity $transition-base, width $transition-base;
+    transform-origin: center;
+  }
+
+  &.open {
+    span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    span:nth-child(2) {
+      opacity: 0;
+      width: 0;
+    }
+    span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+  }
+}
+
+// Desktop nav hidden on mobile
+.desktopNav {
+  display: none;
+
+  @include respond-to(md) {
+    display: flex;
+  }
+}
+
+// Mobile drawer
+.mobileDrawer {
+  position: fixed;
+  top: $nav-height-mobile;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba($color-cream, 0.98);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 100;
+  padding: $space-8 $space-6;
+  transform: translateX(100%);
+  transition: transform $transition-slower;
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+
+  &.open {
+    transform: translateX(0);
+  }
+
+  @include respond-to(md) {
+    display: none;
+  }
+}
+
+.mobileNavLink {
+  display: flex;
+  align-items: center;
+  padding: $space-4 $space-6;
+  font-family: $font-serif;
+  font-size: $text-2xl;
+  font-weight: $font-medium;
+  color: $color-text-primary;
+  border-radius: $border-radius-lg;
+  transition: color $transition-base, background-color $transition-base, transform $transition-base;
+  cursor: pointer;
+
+  &:hover {
+    color: $color-terracotta;
+    background-color: rgba($color-terracotta, 0.06);
+    transform: translateX(8px);
+  }
+
+  &.active {
+    color: $color-terracotta;
+    font-weight: $font-semibold;
+  }
+}
+
+.mobileDivider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, $color-beige-medium, transparent);
+  margin: $space-4 0;
+}

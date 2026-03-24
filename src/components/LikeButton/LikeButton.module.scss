@@ -1,0 +1,60 @@
+@use '../../styles/variables' as *;
+
+.btn {
+  @include button-base;
+  background: transparent;
+  color: var(--color-text-muted);
+  border: 1.5px solid var(--color-border);
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-sm);
+  gap: var(--space-2);
+  border-radius: var(--radius-full);
+
+  &:hover {
+    border-color: #e05a8a;
+    color: #e05a8a;
+    background: rgba(224, 90, 138, 0.06);
+  }
+
+  &.liked {
+    border-color: #e05a8a;
+    color: #e05a8a;
+    background: rgba(224, 90, 138, 0.08);
+
+    .heart {
+      animation: heartBeat 0.4s ease both;
+    }
+  }
+}
+
+.heart {
+  font-size: 1em;
+  display: inline-block;
+  transition: transform var(--transition-fast);
+}
+
+.count {
+  font-weight: 600;
+}
+
+// Ripple
+.rippleWrap {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px;
+  border-radius: 50%;
+  background: rgba(224, 90, 138, 0.4);
+  animation: ripple 0.6s linear;
+  pointer-events: none;
+}

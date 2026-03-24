@@ -1,0 +1,110 @@
+@use '../../styles/variables' as *;
+
+.section {
+  border-top: 1px solid var(--color-border);
+  padding: var(--space-4) var(--space-5);
+  background: rgba(245, 230, 211, 0.3);
+}
+
+.title {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-3);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.comment {
+  display: flex;
+  gap: var(--space-3);
+  animation: fadeInUp 0.35s ease both;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--color-terracotta);
+  @include flex-center;
+  flex-shrink: 0;
+  font-size: var(--text-sm);
+  color: #fff;
+  font-weight: 600;
+  font-family: $font-sans;
+}
+
+.bubble {
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md) var(--radius-md) var(--radius-md) 2px;
+  padding: var(--space-2) var(--space-4);
+  flex: 1;
+}
+
+.author {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--color-terracotta);
+  margin-bottom: 2px;
+}
+
+.text {
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+  line-height: 1.5;
+}
+
+.form {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.input {
+  flex: 1;
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-card-bg);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  font-family: $font-sans;
+  color: var(--color-text-primary);
+  transition: border-color var(--transition-fast);
+  outline: none;
+
+  &::placeholder {
+    color: var(--color-text-muted);
+  }
+
+  &:focus {
+    border-color: var(--color-terracotta);
+  }
+}
+
+.submit {
+  @include button-base;
+  background: var(--color-terracotta);
+  color: #fff;
+  padding: var(--space-2) var(--space-5);
+  font-size: var(--text-sm);
+  flex-shrink: 0;
+
+  &:hover {
+    background: var(--color-rust);
+  }
+}
+
+.empty {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  font-style: italic;
+  text-align: center;
+  padding: var(--space-4) 0;
+}
