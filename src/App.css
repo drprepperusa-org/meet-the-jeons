@@ -1,26 +1,82 @@
-body {
+/* Meet The Jeons — Base Styles */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
-  color: #fff;
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  background-image: linear-gradient(to bottom, #020917, #101725);
+  padding: 0;
 }
 
-.content {
-  display: flex;
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: #FAF6EF;
+  color: #2C1F16;
+  line-height: 1.5;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+.home-placeholder {
   min-height: 100vh;
-  line-height: 1.1;
-  text-align: center;
+  display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
+  gap: 1.5rem;
+  padding: 2rem;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #FAF6EF 0%, #F0E9DC 100%);
 }
 
-.content h1 {
-  font-size: 3.6rem;
-  font-weight: 700;
+.home-placeholder .home-logo {
+  font-size: 4rem;
+  line-height: 1;
 }
 
-.content p {
-  font-size: 1.2rem;
-  font-weight: 400;
-  opacity: 0.5;
+.home-placeholder h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  color: #2C1F16;
+}
+
+.home-placeholder p {
+  font-size: 1.125rem;
+  color: #6B5645;
+  max-width: 420px;
+}
+
+.home-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #C4623A;
+  color: #FDFAF5;
+  text-decoration: none;
+  padding: 0.875rem 2rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  transition: background 250ms ease, transform 250ms ease;
+}
+
+.home-cta:hover {
+  background: #A0442A;
+  transform: translateY(-2px);
 }

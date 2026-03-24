@@ -1,0 +1,143 @@
+@use '../styles/variables' as *;
+
+.page {
+  // Hero handles its own top padding
+}
+
+.preview {
+  background: $color-warm-white;
+  padding: $space-20 0;
+}
+
+.sectionHeader {
+  text-align: center;
+  padding: 0 $space-5 $space-10;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  @include respond-to(md) {
+    padding: 0 $space-8 $space-12;
+  }
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: $font-sans;
+  font-size: $text-xs;
+  font-weight: $font-semibold;
+  letter-spacing: $tracking-widest;
+  text-transform: uppercase;
+  color: $color-terracotta;
+  margin-bottom: $space-3;
+}
+
+.sectionTitle {
+  font-family: $font-display;
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: $color-text-primary;
+  margin-bottom: $space-3;
+}
+
+.sectionSubtitle {
+  font-family: $font-sans;
+  font-size: $text-lg;
+  color: $color-text-secondary;
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: $leading-relaxed;
+}
+
+.previewGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-6;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $space-5;
+
+  @include respond-to(md) {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 $space-8;
+  }
+
+  @include respond-to(lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.viewAll {
+  text-align: center;
+  margin-top: $space-10;
+}
+
+.viewAllBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  padding: $space-4 $space-10;
+  background: $color-terracotta;
+  color: #fff;
+  border: none;
+  border-radius: $border-radius-full;
+  font-family: $font-sans;
+  font-size: $text-base;
+  font-weight: $font-semibold;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba($color-terracotta, 0.3);
+  transition: all $transition-base;
+
+  &:hover {
+    background: $color-rust;
+    box-shadow: 0 6px 24px rgba($color-terracotta, 0.4);
+    transform: translateY(-2px);
+  }
+}
+
+.banner {
+  background: linear-gradient(135deg, $color-terracotta 0%, $color-rust 100%);
+  padding: $space-20 $space-5;
+  text-align: center;
+  color: #fff;
+
+  @include respond-to(md) {
+    padding: $space-24 $space-8;
+  }
+
+  h2 {
+    font-family: $font-display;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: $font-bold;
+    margin-bottom: $space-5;
+    line-height: $leading-snug;
+  }
+
+  p {
+    font-family: $font-sans;
+    font-size: $text-lg;
+    opacity: 0.9;
+    max-width: 480px;
+    margin: 0 auto $space-8;
+    line-height: $leading-relaxed;
+  }
+}
+
+.bannerBtn {
+  display: inline-flex;
+  align-items: center;
+  padding: $space-4 $space-10;
+  background: #fff;
+  color: $color-terracotta;
+  border: none;
+  border-radius: $border-radius-full;
+  font-family: $font-sans;
+  font-size: $text-base;
+  font-weight: $font-bold;
+  cursor: pointer;
+  box-shadow: $shadow-lg;
+  transition: all $transition-base;
+
+  &:hover {
+    box-shadow: $shadow-xl;
+    transform: translateY(-3px);
+  }
+}
