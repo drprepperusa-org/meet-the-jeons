@@ -1,7 +1,3 @@
-/**
- * useGalleryFilters.ts - Convenience hook for gallery filter state
- */
-
 import { useUIStore } from '../stores/uiStore';
 
 export function useGalleryFilters() {
@@ -18,21 +14,9 @@ export function useGalleryFilters() {
     filters.tags.length > 0;
 
   const toggleTag = (tag: string) => {
-    if (filters.tags.includes(tag)) {
-      removeTag(tag);
-    } else {
-      addTag(tag);
-    }
+    if (filters.tags.includes(tag)) removeTag(tag);
+    else addTag(tag);
   };
 
-  return {
-    filters,
-    hasActiveFilters,
-    setChildFilter,
-    setDateRange,
-    addTag,
-    removeTag,
-    toggleTag,
-    clearFilters,
-  };
+  return { filters, hasActiveFilters, setChildFilter, setDateRange, addTag, removeTag, toggleTag, clearFilters } as const;
 }
