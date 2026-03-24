@@ -1,0 +1,128 @@
+@use '../../styles/variables' as *;
+
+.wrap {
+  position: relative;
+  padding: 0 $space-5 $space-12;
+  max-width: 760px;
+  margin: 0 auto;
+
+  @include respond-to(md) {
+    padding: 0 $space-8 $space-16;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: calc($space-5 + 22px);
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, $color-terracotta 0%, $color-sage 60%, transparent 100%);
+    opacity: 0.3;
+
+    @include respond-to(md) {
+      left: calc($space-8 + 22px);
+    }
+  }
+}
+
+.event {
+  display: flex;
+  gap: $space-5;
+  margin-bottom: $space-8;
+  opacity: 0;
+  transform: translateX(-16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+
+  &.revealed {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.dot {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  border: 2px solid $color-beige;
+  background: $color-warm-white;
+  box-shadow: $shadow-sm;
+  position: relative;
+  z-index: 1;
+  transition: all $transition-base;
+
+  .event:hover & {
+    border-color: $color-terracotta-light;
+    box-shadow: 0 0 0 5px rgba($color-terracotta, 0.1);
+    transform: scale(1.1);
+  }
+}
+
+.content {
+  flex: 1;
+  padding-bottom: $space-6;
+  border-bottom: 1px solid $color-beige;
+
+  .event:last-child & {
+    border-bottom: none;
+  }
+}
+
+.categoryBadge {
+  display: inline-block;
+  padding: 2px $space-3;
+  border-radius: $border-radius-full;
+  font-family: $font-sans;
+  font-size: $text-xs;
+  font-weight: $font-semibold;
+  margin-bottom: $space-2;
+
+  &.milestone    { background: rgba($color-terracotta, 0.15); color: $color-terracotta; }
+  &.travel       { background: rgba($color-sage, 0.2); color: $color-sage-dark; }
+  &.family       { background: rgba($color-gold, 0.2); color: darken($color-gold, 15%); }
+  &.celebration  { background: rgba($color-rust, 0.12); color: $color-rust; }
+}
+
+.date {
+  font-family: $font-sans;
+  font-size: $text-xs;
+  font-weight: $font-semibold;
+  color: $color-terracotta;
+  letter-spacing: $tracking-wide;
+  text-transform: uppercase;
+  margin-bottom: $space-1;
+}
+
+.eventTitle {
+  font-family: $font-serif;
+  font-size: $text-xl;
+  color: $color-text-primary;
+  margin-bottom: $space-2;
+}
+
+.eventDesc {
+  font-family: $font-sans;
+  font-size: $text-base;
+  color: $color-text-secondary;
+  line-height: $leading-relaxed;
+}
+
+.eventImage {
+  margin-top: $space-4;
+  border-radius: $border-radius;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+
+    &:hover { transform: scale(1.04); }
+  }
+}

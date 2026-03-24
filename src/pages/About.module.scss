@@ -1,0 +1,227 @@
+@use '../styles/variables' as *;
+
+.page {
+  padding-top: 80px;
+  min-height: 100vh;
+  background: $color-cream;
+}
+
+.header {
+  text-align: center;
+  padding: $space-16 $space-5 $space-12;
+  max-width: 800px;
+  margin: 0 auto;
+
+  @include respond-to(md) {
+    padding: $space-20 $space-8 $space-12;
+  }
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: $font-sans;
+  font-size: $text-xs;
+  font-weight: $font-semibold;
+  letter-spacing: $tracking-widest;
+  text-transform: uppercase;
+  color: $color-terracotta;
+  margin-bottom: $space-3;
+}
+
+.title {
+  font-family: $font-display;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: $color-text-primary;
+  margin-bottom: $space-5;
+}
+
+.intro {
+  font-family: $font-sans;
+  font-size: $text-lg;
+  color: $color-text-secondary;
+  line-height: $leading-relaxed;
+}
+
+// Members grid
+.membersSection {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $space-5 $space-20;
+
+  @include respond-to(md) {
+    padding: 0 $space-8 $space-24;
+  }
+}
+
+.sectionLabel {
+  font-family: $font-display;
+  font-size: $text-3xl;
+  color: $color-text-primary;
+  text-align: center;
+  margin-bottom: $space-10;
+}
+
+.parentsGrid {
+  display: grid;
+  gap: $space-6;
+  margin-bottom: $space-8;
+  grid-template-columns: 1fr;
+
+  @include respond-to(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.kidsGrid {
+  display: grid;
+  gap: $space-6;
+  grid-template-columns: 1fr;
+
+  @include respond-to(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+// Story
+.story {
+  background: $color-warm-white;
+  padding: $space-20 $space-5;
+
+  @include respond-to(md) {
+    padding: $space-24 $space-8;
+  }
+}
+
+.storyInner {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.storyTitle {
+  font-family: $font-display;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  color: $color-text-primary;
+  margin-bottom: $space-6;
+}
+
+.storyText {
+  font-family: $font-sans;
+  font-size: $text-lg;
+  color: $color-text-secondary;
+  line-height: 2.0;
+  margin-bottom: $space-5;
+
+  strong { color: $color-terracotta; font-weight: $font-bold; }
+}
+
+.divider {
+  width: 60px;
+  height: 3px;
+  background: $color-terracotta;
+  opacity: 0.4;
+  border-radius: $border-radius-full;
+  margin: $space-8 auto;
+}
+
+// Values
+.values {
+  padding: $space-20 $space-5;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  @include respond-to(md) {
+    padding: $space-20 $space-8;
+  }
+}
+
+.valuesTitle {
+  font-family: $font-display;
+  font-size: $text-3xl;
+  text-align: center;
+  margin-bottom: $space-10;
+  color: $color-text-primary;
+}
+
+.valuesGrid {
+  display: grid;
+  gap: $space-5;
+  grid-template-columns: 1fr;
+
+  @include respond-to(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to(lg) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.valueCard {
+  background: $color-warm-white;
+  border: 1px solid $color-beige;
+  border-radius: $border-radius-lg;
+  padding: $space-6 $space-5;
+  text-align: center;
+  transition: all $transition-base;
+
+  &:hover {
+    box-shadow: $shadow-md;
+    transform: translateY(-4px);
+    border-color: rgba($color-terracotta, 0.3);
+  }
+}
+
+.valueIcon {
+  font-size: 2.5rem;
+  margin-bottom: $space-3;
+}
+
+.valueName {
+  font-family: $font-serif;
+  font-size: $text-lg;
+  color: $color-text-primary;
+  margin-bottom: $space-2;
+}
+
+.valueDesc {
+  font-family: $font-sans;
+  font-size: $text-sm;
+  color: $color-text-secondary;
+  line-height: $leading-relaxed;
+}
+
+// Timeline section
+.timelineSection {
+  background: $color-cream;
+  padding: $space-20 0;
+}
+
+.timelineHeader {
+  text-align: center;
+  padding: 0 $space-5 $space-12;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.timelineTitle {
+  font-family: $font-display;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  color: $color-text-primary;
+  margin-bottom: $space-4;
+}
+
+.timelineSubtitle {
+  font-family: $font-sans;
+  font-size: $text-lg;
+  color: $color-text-secondary;
+  line-height: $leading-relaxed;
+}
+
+.loadingState {
+  text-align: center;
+  padding: $space-16;
+  color: $color-text-muted;
+  font-family: $font-sans;
+  font-size: $text-lg;
+}

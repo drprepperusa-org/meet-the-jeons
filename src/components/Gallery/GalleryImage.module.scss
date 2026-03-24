@@ -1,0 +1,223 @@
+@use '../../styles/variables' as *;
+
+.card {
+  background: $color-warm-white;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-md;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform $transition-base, box-shadow $transition-base;
+  border: 1px solid $color-beige;
+  display: flex;
+  flex-direction: column;
+  outline: none;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: $shadow-lg;
+
+    .image {
+      transform: scale(1.05);
+    }
+  }
+
+  &:focus-visible {
+    outline: 3px solid $color-terracotta;
+    outline-offset: 2px;
+  }
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: $color-cream-dark;
+  flex-shrink: 0;
+}
+
+.skeleton {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    $color-beige 0%,
+    lighten($color-beige, 8%) 50%,
+    $color-beige 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite ease-in-out;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.errorPlaceholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $space-2;
+  background: $color-cream-dark;
+  color: $color-text-muted;
+
+  span { font-size: 2rem; }
+  p {
+    font-family: $font-sans;
+    font-size: $text-sm;
+  }
+}
+
+.image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity $transition-base, transform $transition-slow;
+  opacity: 0;
+
+  &.loaded {
+    opacity: 1;
+  }
+}
+
+// Child badges
+.childBadge {
+  position: absolute;
+  top: $space-3;
+  left: $space-3;
+  padding: $space-1 $space-3;
+  border-radius: $border-radius-full;
+  font-size: $text-xs;
+  font-family: $font-sans;
+  font-weight: $font-semibold;
+  letter-spacing: $tracking-wide;
+  text-transform: uppercase;
+  backdrop-filter: blur(6px);
+  z-index: 2;
+}
+
+.child-sofia {
+  background: rgba(196, 98, 58, 0.82);
+  color: $color-warm-white;
+}
+
+.child-liam {
+  background: rgba(90, 107, 80, 0.85);
+  color: $color-warm-white;
+}
+
+.child-both {
+  background: rgba(196, 154, 60, 0.85);
+  color: $color-warm-white;
+}
+
+.tagRow {
+  position: absolute;
+  bottom: $space-3;
+  left: $space-3;
+  display: flex;
+  gap: $space-2;
+  z-index: 2;
+  flex-wrap: wrap;
+  max-width: calc(100% - #{$space-6});
+}
+
+.tag {
+  background: rgba(44, 31, 22, 0.55);
+  color: $color-cream;
+  font-size: $text-xs;
+  font-family: $font-sans;
+  padding: 2px $space-2;
+  border-radius: $border-radius-sm;
+  letter-spacing: $tracking-wide;
+  backdrop-filter: blur(4px);
+  text-transform: lowercase;
+}
+
+.meta {
+  padding: $space-4 $space-5 $space-5;
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  flex: 1;
+}
+
+.caption {
+  font-family: $font-sans;
+  font-size: $text-base;
+  font-weight: $font-medium;
+  color: $color-text-primary;
+  line-height: $leading-snug;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.date {
+  font-family: $font-sans;
+  font-size: $text-sm;
+  color: $color-text-muted;
+  margin: 0;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: $space-4;
+  margin-top: auto;
+  padding-top: $space-3;
+  border-top: 1px solid $color-cream-dark;
+}
+
+.likeBtn,
+.commentBtn {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: $space-1 $space-2;
+  border-radius: $border-radius;
+  transition: background-color $transition-fast, transform $transition-fast;
+  font-family: $font-sans;
+
+  &:hover {
+    background: $color-cream-dark;
+  }
+
+  &:active {
+    transform: scale(0.93);
+  }
+}
+
+.likeBtn.liked .icon {
+  animation: heartPop 0.28s ease forwards;
+}
+
+@keyframes heartPop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+
+.icon {
+  font-size: 1rem;
+  display: inline-block;
+  line-height: 1;
+}
+
+.count {
+  font-size: $text-sm;
+  color: $color-text-secondary;
+  font-weight: $font-medium;
+  min-width: 1.5ch;
+}
