@@ -54,7 +54,7 @@ const GalleryImage: React.FC<GalleryImageProps> = ({ image, onClick, showChild =
       aria-label={`View photo: ${image.caption}`}
     >
       <div className={styles.imageWrapper}>
-        {!imgLoaded && !imgError && <div className={styles.skeleton} aria-hidden />}
+        {!imgLoaded && !imgError && <div className={styles.skeleton} aria-hidden="true" />}
         {imgError && (
           <div className={styles.errorPlaceholder} aria-label="Image unavailable">
             <span>📷</span>
@@ -97,7 +97,7 @@ const GalleryImage: React.FC<GalleryImageProps> = ({ image, onClick, showChild =
             aria-label={liked ? `Unlike photo (${likeCount} likes)` : `Like photo (${likeCount} likes)`}
             aria-pressed={liked}
           >
-            <span className={styles.icon} aria-hidden>{liked ? '❤️' : '🤍'}</span>
+            <span className={styles.icon} aria-hidden="true">{liked ? '❤️' : '🤍'}</span>
             <span className={styles.count}>{likeCount}</span>
           </button>
 
@@ -106,7 +106,7 @@ const GalleryImage: React.FC<GalleryImageProps> = ({ image, onClick, showChild =
             onClick={(e) => { e.stopPropagation(); onClick(image); }}
             aria-label={`${comments.length} comments — click to view`}
           >
-            <span className={styles.icon} aria-hidden>💬</span>
+            <span className={styles.icon} aria-hidden="true">💬</span>
             <span className={styles.count}>{comments.length}</span>
           </button>
         </div>

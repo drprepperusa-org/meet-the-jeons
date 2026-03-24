@@ -106,7 +106,7 @@ const GrowthGallery: React.FC = () => {
                 <option key={y} value={y}>{y}</option>
               ))}
             </select>
-            <span className={styles.yearSep} aria-hidden>–</span>
+            <span className={styles.yearSep} aria-hidden="true">–</span>
             <select
               value={yearTo}
               onChange={(e) => setYearTo(Number(e.target.value))}

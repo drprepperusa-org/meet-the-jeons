@@ -168,7 +168,7 @@ const GalleryModal: React.FC<GalleryModalProps> = ({ image, images, onClose }) =
                   aria-label={liked ? `Unlike (${likeCount} likes)` : `Like (${likeCount} likes)`}
                   aria-pressed={liked}
                 >
-                  <span aria-hidden>{liked ? '❤️' : '🤍'}</span>
+                  <span aria-hidden="true">{liked ? '❤️' : '🤍'}</span>
                   <span>{likeCount} {likeCount === 1 ? 'like' : 'likes'}</span>
                 </button>
               </div>
