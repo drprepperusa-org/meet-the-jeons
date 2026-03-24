@@ -1,0 +1,235 @@
+@use '../../styles/variables' as *;
+
+.section {
+  padding: $space-16 $space-6 $space-20;
+  background: $color-warm-white;
+
+  @include respond-to(md) {
+    padding: $space-20 $space-8 $space-24;
+  }
+}
+
+.headerBlock {
+  max-width: 680px;
+  margin: 0 auto $space-12;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-4;
+}
+
+.eyebrow {
+  font-family: $font-sans;
+  font-size: $text-sm;
+  font-weight: $font-semibold;
+  letter-spacing: $tracking-widest;
+  text-transform: uppercase;
+  color: $color-sage-dark;
+}
+
+.heading {
+  font-family: $font-serif;
+  font-size: $text-4xl;
+  font-weight: $font-bold;
+  color: $color-text-primary;
+  line-height: $leading-tight;
+  margin: 0;
+
+  @include respond-to(md) {
+    font-size: $text-5xl;
+  }
+}
+
+.subheading {
+  font-family: $font-sans;
+  font-size: $text-lg;
+  color: $color-text-secondary;
+  line-height: $leading-relaxed;
+  margin: 0;
+}
+
+// --- Filters ---
+
+.filtersPanel {
+  max-width: 1280px;
+  margin: 0 auto $space-8;
+  background: $color-cream;
+  border: 1px solid $color-beige;
+  border-radius: $border-radius-lg;
+  padding: $space-6;
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-6;
+  align-items: flex-start;
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  min-width: 0;
+}
+
+.filterLabel {
+  font-family: $font-sans;
+  font-size: $text-xs;
+  font-weight: $font-semibold;
+  letter-spacing: $tracking-wider;
+  text-transform: uppercase;
+  color: $color-text-muted;
+}
+
+.pillGroup {
+  display: flex;
+  gap: $space-2;
+  flex-wrap: wrap;
+}
+
+.pill {
+  background: $color-warm-white;
+  border: 1.5px solid $color-beige;
+  color: $color-text-secondary;
+  font-family: $font-sans;
+  font-size: $text-sm;
+  font-weight: $font-medium;
+  padding: $space-1 $space-4;
+  border-radius: $border-radius-full;
+  cursor: pointer;
+  transition: all $transition-fast;
+  text-transform: capitalize;
+  white-space: nowrap;
+
+  &:hover {
+    background: $color-cream-dark;
+    border-color: $color-beige-medium;
+  }
+
+  &.pillActive {
+    background: $color-terracotta;
+    border-color: $color-terracotta;
+    color: $color-warm-white;
+
+    &:hover {
+      background: $color-rust;
+      border-color: $color-rust;
+    }
+  }
+}
+
+// Child-specific pill accents
+.childSofia.pillActive {
+  background: $color-terracotta;
+  border-color: $color-terracotta;
+}
+
+.childLiam.pillActive {
+  background: $color-sage-dark;
+  border-color: $color-sage-dark;
+}
+
+.childBoth.pillActive {
+  background: $color-brown;
+  border-color: $color-brown;
+}
+
+.yearRow {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+}
+
+.yearSelect {
+  background: $color-warm-white;
+  border: 1.5px solid $color-beige;
+  color: $color-text-primary;
+  font-family: $font-sans;
+  font-size: $text-sm;
+  padding: $space-1 $space-3;
+  border-radius: $border-radius;
+  cursor: pointer;
+  transition: border-color $transition-fast;
+  appearance: none;
+  padding-right: $space-5;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%239A8E82' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 10px;
+
+  &:focus {
+    outline: none;
+    border-color: $color-terracotta-light;
+  }
+}
+
+.yearSep {
+  font-family: $font-sans;
+  color: $color-text-muted;
+  font-weight: $font-medium;
+}
+
+.clearBtn {
+  background: none;
+  border: 1.5px solid $color-beige-medium;
+  color: $color-text-muted;
+  font-family: $font-sans;
+  font-size: $text-sm;
+  padding: $space-2 $space-4;
+  border-radius: $border-radius-full;
+  cursor: pointer;
+  transition: all $transition-fast;
+  align-self: flex-end;
+  margin-top: auto;
+
+  &:hover {
+    background: $color-cream-dark;
+    color: $color-text-primary;
+    border-color: $color-warm-gray;
+  }
+}
+
+.resultCount {
+  max-width: 1280px;
+  margin: 0 auto $space-6;
+  font-family: $font-sans;
+  font-size: $text-sm;
+  color: $color-text-muted;
+  padding: 0 $space-1;
+}
+
+.grid {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: $space-6;
+
+  @include respond-to(sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to(lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.emptyState {
+  max-width: 400px;
+  margin: $space-16 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-4;
+
+  span {
+    font-size: 3rem;
+  }
+
+  p {
+    font-family: $font-sans;
+    font-size: $text-base;
+    color: $color-text-muted;
+    margin: 0;
+  }
+}

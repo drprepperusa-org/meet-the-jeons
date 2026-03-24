@@ -1,0 +1,66 @@
+@use '../../styles/variables' as *;
+
+.section {
+  padding: $space-16 $space-6 $space-20;
+  background: $color-cream;
+
+  @include respond-to(md) {
+    padding: $space-20 $space-8 $space-24;
+  }
+}
+
+.headerBlock {
+  max-width: 680px;
+  margin: 0 auto $space-12;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-4;
+}
+
+.eyebrow {
+  font-family: $font-sans;
+  font-size: $text-sm;
+  font-weight: $font-semibold;
+  letter-spacing: $tracking-widest;
+  text-transform: uppercase;
+  color: $color-terracotta;
+}
+
+.heading {
+  font-family: $font-serif;
+  font-size: $text-4xl;
+  font-weight: $font-bold;
+  color: $color-text-primary;
+  line-height: $leading-tight;
+  margin: 0;
+
+  @include respond-to(md) {
+    font-size: $text-5xl;
+  }
+}
+
+.subheading {
+  font-family: $font-sans;
+  font-size: $text-lg;
+  color: $color-text-secondary;
+  line-height: $leading-relaxed;
+  margin: 0;
+}
+
+.grid {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: $space-6;
+
+  @include respond-to(sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to(lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

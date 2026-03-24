@@ -1,0 +1,112 @@
+@use '../styles/variables' as *;
+
+.page {
+  padding-top: 0; // Hero takes full viewport
+}
+
+.preview {
+  padding: var(--space-20) 0;
+  background: var(--color-warm-white);
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: var(--space-12);
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-terracotta);
+  margin-bottom: var(--space-3);
+}
+
+.sectionTitle {
+  font-family: $font-serif;
+  font-size: var(--text-3xl);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-4);
+}
+
+.sectionSubtitle {
+  font-size: var(--text-md);
+  color: var(--color-text-secondary);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-5);
+
+  @include respond-md {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 var(--space-8);
+  }
+
+  @include respond-lg {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.viewAll {
+  text-align: center;
+  margin-top: var(--space-10);
+}
+
+.btn {
+  @include button-base;
+  background: var(--color-terracotta);
+  color: #fff;
+  padding: var(--space-4) var(--space-10);
+  font-size: var(--text-base);
+  box-shadow: var(--shadow-soft);
+
+  &:hover {
+    background: var(--color-rust);
+    box-shadow: var(--shadow-medium);
+    transform: translateY(-2px);
+  }
+}
+
+.familyBanner {
+  padding: var(--space-24) var(--space-5);
+  background: linear-gradient(135deg, $terracotta, $rust);
+  text-align: center;
+  color: #fff;
+
+  h2 {
+    font-family: $font-serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    margin-bottom: var(--space-5);
+    font-weight: 700;
+  }
+
+  p {
+    font-size: var(--text-lg);
+    opacity: 0.9;
+    max-width: 480px;
+    margin: 0 auto var(--space-8);
+  }
+}
+
+.bannerBtn {
+  @include button-base;
+  background: #fff;
+  color: $terracotta;
+  padding: var(--space-4) var(--space-10);
+  font-size: var(--text-base);
+  box-shadow: var(--shadow-medium);
+
+  &:hover {
+    box-shadow: var(--shadow-strong);
+    transform: translateY(-3px);
+  }
+}

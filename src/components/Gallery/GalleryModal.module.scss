@@ -1,0 +1,425 @@
+@use '../../styles/variables' as *;
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(44, 31, 22, 0.85);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $space-4;
+  animation: fadeIn $transition-base forwards;
+  overflow-y: auto;
+
+  &.closing {
+    animation: fadeOut 0.25s ease forwards;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+.modal {
+  position: relative;
+  background: $color-warm-white;
+  border-radius: $border-radius-xl;
+  box-shadow: $shadow-xl;
+  width: 100%;
+  max-width: 1100px;
+  max-height: 95vh;
+  overflow: hidden;
+  animation: slideUp $transition-base forwards;
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.closeBtn {
+  position: absolute;
+  top: $space-4;
+  right: $space-4;
+  width: 36px;
+  height: 36px;
+  border-radius: $border-radius-full;
+  background: rgba(44, 31, 22, 0.12);
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: $color-text-secondary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: background $transition-fast, color $transition-fast;
+  font-weight: $font-bold;
+
+  &:hover {
+    background: $color-terracotta;
+    color: $color-warm-white;
+  }
+}
+
+.navBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: $border-radius-full;
+  background: $color-warm-white;
+  border: 1px solid $color-beige;
+  cursor: pointer;
+  font-size: 1.75rem;
+  color: $color-text-primary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  box-shadow: $shadow-md;
+  transition: background $transition-fast, transform $transition-fast;
+  line-height: 1;
+
+  &:hover {
+    background: $color-cream-dark;
+    transform: translateY(-50%) scale(1.05);
+  }
+}
+
+.prevBtn {
+  left: $space-3;
+}
+
+.nextBtn {
+  right: $space-3;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  max-height: 95vh;
+
+  @include respond-to(md) {
+    flex-direction: row;
+    max-height: 90vh;
+  }
+}
+
+.imagePane {
+  position: relative;
+  flex: 1;
+  min-height: 280px;
+  background: $color-brown-dark;
+
+  @include respond-to(md) {
+    min-height: 500px;
+    max-height: 90vh;
+    flex: 0 0 55%;
+  }
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  min-height: 280px;
+  max-height: 60vh;
+
+  @include respond-to(md) {
+    max-height: 90vh;
+  }
+}
+
+.childBadge {
+  position: absolute;
+  top: $space-4;
+  left: $space-4;
+  padding: $space-1 $space-3;
+  border-radius: $border-radius-full;
+  font-size: $text-xs;
+  font-family: $font-sans;
+  font-weight: $font-semibold;
+  letter-spacing: $tracking-wider;
+  text-transform: uppercase;
+}
+
+.childSofia {
+  background: rgba(196, 98, 58, 0.85);
+  color: $color-warm-white;
+}
+
+.childLiam {
+  background: rgba(122, 140, 110, 0.85);
+  color: $color-warm-white;
+}
+
+.childBoth {
+  background: rgba(196, 154, 60, 0.85);
+  color: $color-warm-white;
+}
+
+.counter {
+  position: absolute;
+  bottom: $space-3;
+  right: $space-4;
+  background: rgba(44, 31, 22, 0.6);
+  color: $color-cream;
+  font-size: $text-xs;
+  font-family: $font-sans;
+  padding: $space-1 $space-3;
+  border-radius: $border-radius-full;
+  backdrop-filter: blur(4px);
+}
+
+.infoPane {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding: $space-6 $space-6 $space-4;
+  gap: $space-6;
+  border-left: 1px solid $color-beige;
+  min-width: 0;
+
+  @include respond-to(md) {
+    flex: 0 0 45%;
+    max-height: 90vh;
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+}
+
+.title {
+  font-family: $font-serif;
+  font-size: $text-2xl;
+  font-weight: $font-bold;
+  color: $color-text-primary;
+  line-height: $leading-tight;
+  margin: 0;
+}
+
+.date {
+  font-family: $font-sans;
+  font-size: $text-sm;
+  color: $color-text-muted;
+  margin: 0;
+}
+
+.description {
+  font-family: $font-sans;
+  font-size: $text-base;
+  color: $color-text-secondary;
+  line-height: $leading-relaxed;
+  margin: 0;
+  font-style: italic;
+}
+
+.tagRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
+}
+
+.tag {
+  background: $color-cream-dark;
+  color: $color-text-secondary;
+  font-size: $text-xs;
+  font-family: $font-sans;
+  font-weight: $font-medium;
+  padding: $space-1 $space-3;
+  border-radius: $border-radius-full;
+  text-transform: capitalize;
+  border: 1px solid $color-beige;
+}
+
+.actions {
+  padding-top: $space-2;
+}
+
+.likeBtn {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  background: $color-cream;
+  border: 1.5px solid $color-beige;
+  border-radius: $border-radius-full;
+  padding: $space-2 $space-5;
+  cursor: pointer;
+  font-family: $font-sans;
+  font-size: $text-sm;
+  font-weight: $font-medium;
+  color: $color-text-secondary;
+  transition: all $transition-base;
+
+  &:hover {
+    background: $color-cream-dark;
+    border-color: $color-beige-medium;
+  }
+
+  &.liked {
+    background: rgba(196, 98, 58, 0.08);
+    border-color: $color-terracotta-light;
+    color: $color-terracotta;
+  }
+}
+
+// --- Comments ---
+
+.commentsSection {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+  border-top: 1px solid $color-cream-dark;
+  padding-top: $space-5;
+}
+
+.commentsTitle {
+  font-family: $font-sans;
+  font-size: $text-base;
+  font-weight: $font-semibold;
+  color: $color-text-primary;
+  margin: 0;
+}
+
+.commentsList {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+  max-height: 240px;
+  overflow-y: auto;
+  padding-right: $space-1;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-track {
+    background: $color-cream-dark;
+    border-radius: 2px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $color-beige-medium;
+    border-radius: 2px;
+  }
+}
+
+.noComments {
+  font-family: $font-sans;
+  font-size: $text-sm;
+  color: $color-text-muted;
+  font-style: italic;
+  text-align: center;
+  padding: $space-4 0;
+  margin: 0;
+}
+
+.comment {
+  background: $color-cream;
+  border-radius: $border-radius;
+  padding: $space-3 $space-4;
+  border: 1px solid $color-cream-dark;
+}
+
+.commentHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: $space-2;
+  gap: $space-2;
+  flex-wrap: wrap;
+}
+
+.commentAuthor {
+  font-family: $font-sans;
+  font-size: $text-sm;
+  font-weight: $font-semibold;
+  color: $color-terracotta;
+}
+
+.commentTime {
+  font-family: $font-sans;
+  font-size: $text-xs;
+  color: $color-text-muted;
+}
+
+.commentText {
+  font-family: $font-sans;
+  font-size: $text-sm;
+  color: $color-text-secondary;
+  line-height: $leading-relaxed;
+  margin: 0;
+}
+
+// --- Form ---
+
+.commentForm {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+}
+
+.nameInput,
+.commentInput {
+  background: $color-cream;
+  border: 1.5px solid $color-beige;
+  border-radius: $border-radius;
+  padding: $space-3 $space-4;
+  font-family: $font-sans;
+  font-size: $text-sm;
+  color: $color-text-primary;
+  transition: border-color $transition-fast, box-shadow $transition-fast;
+  resize: none;
+  width: 100%;
+  box-sizing: border-box;
+
+  &::placeholder {
+    color: $color-text-muted;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $color-terracotta-light;
+    box-shadow: 0 0 0 3px rgba(196, 98, 58, 0.1);
+  }
+}
+
+.submitBtn {
+  align-self: flex-end;
+  background: $color-terracotta;
+  color: $color-warm-white;
+  border: none;
+  border-radius: $border-radius-full;
+  padding: $space-2 $space-6;
+  font-family: $font-sans;
+  font-size: $text-sm;
+  font-weight: $font-semibold;
+  cursor: pointer;
+  transition: background $transition-fast, transform $transition-fast;
+
+  &:hover:not(:disabled) {
+    background: $color-rust;
+    transform: translateY(-1px);
+  }
+
+  &:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+}

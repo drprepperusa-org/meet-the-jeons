@@ -1,0 +1,219 @@
+@use '../../styles/variables' as *;
+
+.card {
+  background: $color-warm-white;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-md;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform $transition-base, box-shadow $transition-base;
+  border: 1px solid $color-beige;
+  display: flex;
+  flex-direction: column;
+  outline: none;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-lg;
+
+    .image {
+      transform: scale(1.04);
+    }
+  }
+
+  &:focus-visible {
+    ring: 2px solid $color-terracotta;
+  }
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: $color-cream-dark;
+}
+
+.skeleton {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    $color-beige 0%,
+    $color-cream 50%,
+    $color-beige 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.errorPlaceholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: $color-cream-dark;
+  color: $color-text-muted;
+  gap: $space-2;
+
+  span {
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: $text-sm;
+    font-family: $font-sans;
+  }
+}
+
+.image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform $transition-slow;
+  opacity: 0;
+
+  &.loaded {
+    opacity: 1;
+  }
+}
+
+.childBadge {
+  position: absolute;
+  top: $space-3;
+  left: $space-3;
+  padding: $space-1 $space-3;
+  border-radius: $border-radius-full;
+  font-size: $text-xs;
+  font-family: $font-sans;
+  font-weight: $font-semibold;
+  letter-spacing: $tracking-wider;
+  text-transform: uppercase;
+  backdrop-filter: blur(4px);
+  z-index: 2;
+}
+
+.childSofia {
+  background: rgba(196, 98, 58, 0.85);
+  color: $color-warm-white;
+}
+
+.childLiam {
+  background: rgba(122, 140, 110, 0.85);
+  color: $color-warm-white;
+}
+
+.childBoth {
+  background: rgba(196, 154, 60, 0.85);
+  color: $color-warm-white;
+}
+
+.tagRow {
+  position: absolute;
+  bottom: $space-3;
+  left: $space-3;
+  display: flex;
+  gap: $space-2;
+  z-index: 2;
+  flex-wrap: wrap;
+  max-width: calc(100% - #{$space-6});
+}
+
+.tag {
+  background: rgba(44, 31, 22, 0.6);
+  color: $color-cream;
+  font-size: $text-xs;
+  font-family: $font-sans;
+  padding: 2px $space-2;
+  border-radius: $border-radius-sm;
+  letter-spacing: $tracking-wide;
+  backdrop-filter: blur(4px);
+  text-transform: capitalize;
+}
+
+.meta {
+  padding: $space-4 $space-5 $space-5;
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  flex: 1;
+}
+
+.title {
+  font-family: $font-serif;
+  font-size: $text-lg;
+  font-weight: $font-semibold;
+  color: $color-text-primary;
+  line-height: $leading-snug;
+  margin: 0;
+}
+
+.date {
+  font-family: $font-sans;
+  font-size: $text-sm;
+  color: $color-text-muted;
+  margin: 0;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: $space-4;
+  margin-top: auto;
+  padding-top: $space-3;
+  border-top: 1px solid $color-cream-dark;
+}
+
+.likeBtn,
+.commentBtn {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: $space-1 $space-2;
+  border-radius: $border-radius;
+  transition: background-color $transition-fast, transform $transition-fast;
+  font-family: $font-sans;
+
+  &:hover {
+    background: $color-cream-dark;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.likeBtn {
+  &.liked .heart {
+    animation: heartPop 0.3s ease;
+  }
+}
+
+@keyframes heartPop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.35); }
+  100% { transform: scale(1); }
+}
+
+.heart {
+  font-size: 1rem;
+  display: inline-block;
+}
+
+.count {
+  font-size: $text-sm;
+  color: $color-text-secondary;
+  font-weight: $font-medium;
+}

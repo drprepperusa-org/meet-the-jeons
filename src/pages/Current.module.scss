@@ -1,0 +1,100 @@
+@use '../styles/variables' as *;
+
+.page {
+  padding-top: 80px;
+  min-height: 100vh;
+  background: var(--color-warm-white);
+}
+
+.header {
+  padding: var(--space-16) var(--space-5) var(--space-10);
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+
+  @include respond-md {
+    padding: var(--space-20) var(--space-8) var(--space-12);
+  }
+}
+
+.eyebrow {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-terracotta);
+  display: block;
+  margin-bottom: var(--space-3);
+}
+
+.title {
+  font-family: $font-serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-4);
+}
+
+.subtitle {
+  font-size: var(--text-md);
+  color: var(--color-text-secondary);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+// Filter bar
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  justify-content: center;
+  padding: 0 var(--space-5) var(--space-8);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.filterBtn {
+  @include button-base;
+  background: var(--color-card-bg);
+  color: var(--color-text-secondary);
+  border: 1.5px solid var(--color-border);
+  padding: var(--space-2) var(--space-5);
+  font-size: var(--text-sm);
+  border-radius: var(--radius-full);
+
+  &:hover {
+    border-color: var(--color-terracotta);
+    color: var(--color-terracotta);
+  }
+
+  &.active {
+    background: var(--color-terracotta);
+    color: #fff;
+    border-color: var(--color-terracotta);
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-5) var(--space-16);
+
+  @include respond-md {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 var(--space-8) var(--space-20);
+  }
+
+  @include respond-lg {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.empty {
+  text-align: center;
+  padding: var(--space-16);
+  color: var(--color-text-muted);
+  font-size: var(--text-lg);
+  grid-column: 1 / -1;
+}
