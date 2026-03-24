@@ -1,12 +1,9 @@
-/**
- * useLikeImage.ts - Toggle image like with optimistic update
- */
-
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toggleLike } from '../api/mockData';
 import { useGalleryStore } from '../stores/galleryStore';
 
 export function useLikeImage() {
+  const queryClient = useQueryClient();
   const likes = useGalleryStore((s) => s.likes);
   const setLike = useGalleryStore((s) => s.setLike);
 
@@ -15,20 +12,22 @@ export function useLikeImage() {
       const current = likes[imageId] ?? { count: 0, liked: false };
       return toggleLike(imageId, current.count, current.liked);
     },
-    onMutate: (imageId: string) => {
-      // Optimistic update
-      const prev = likes[imageId] ?? { count: 0, liked: false };
-      setLike(imageId, prev.liked ? prev.count - 1 : prev.count + 1, !prev.liked);
-      return { prev, imageId };
+
+    onMutate: async (imageId: string) => {
+      const previous = likes[imageId] ?? { count: 0, liked: false };
+      setLike(imageId, previous.liked ? previous.count - 1 : previous.count + 1, !previous.liked);
+      return { previous, imageId };
     },
-    onError: (_err, _id, context) => {
-      if (context) {
-        setLike(context.imageId, context.prev.count, context.prev.liked);
-      }
+
+    onError: (_err, _imageId, context) => {
+      if (context) setLike(context.imageId, context.previous.count, context.previous.liked);
     },
+
     onSuccess: (response) => {
       if (response.success) {
         setLike(response.data.imageId, response.data.likes, response.data.liked);
+        queryClient.invalidateQueries({ queryKey: ['currentGallery'] });
+        queryClient.invalidateQueries({ queryKey: ['growthGallery'] });
       }
     },
   });
@@ -36,5 +35,5 @@ export function useLikeImage() {
   const likeImage = (imageId: string) => mutation.mutate(imageId);
   const getLikeState = (imageId: string) => likes[imageId] ?? { count: 0, liked: false };
 
-  return { likeImage, getLikeState, isPending: mutation.isPending };
+  return { likeImage, getLikeState, isPending: mutation.isPending, isError: mutation.isError, error: mutation.error };
 }

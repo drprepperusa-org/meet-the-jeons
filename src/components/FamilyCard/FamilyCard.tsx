@@ -2,8 +2,6 @@ import type { Parent, Child } from '../../api/mockData';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 import styles from './FamilyCard.module.scss';
 
-type Member = (Parent | Child) & { type: 'parent' | 'child' };
-
 interface Props {
   member: Parent | Child;
   type: 'parent' | 'child';

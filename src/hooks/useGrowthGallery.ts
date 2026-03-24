@@ -1,19 +1,19 @@
-/**
- * useGrowthGallery.ts - Fetch growth images with filter support
- */
-
 import { useQuery, keepPreviousData } from '@tanstack/react-query';
 import { fetchGrowthImages } from '../api/mockData';
 import { useGalleryStore } from '../stores/galleryStore';
 import { useUIStore } from '../stores/uiStore';
 
-interface Options {
+interface UseGrowthGalleryOptions {
   page?: number;
   pageSize?: number;
   enabled?: boolean;
 }
 
-export function useGrowthGallery({ page = 1, pageSize = 50, enabled = true }: Options = {}) {
+export function useGrowthGallery({
+  page = 1,
+  pageSize = 8,
+  enabled = true,
+}: UseGrowthGalleryOptions = {}) {
   const filters = useUIStore((s) => s.filters);
   const initializeLikes = useGalleryStore((s) => s.initializeLikes);
   const setGrowthImages = useGalleryStore((s) => s.setGrowthImages);
@@ -21,16 +21,16 @@ export function useGrowthGallery({ page = 1, pageSize = 50, enabled = true }: Op
   const query = useQuery({
     queryKey: ['growthGallery', page, pageSize, filters],
     queryFn: async () => {
-      const res = await fetchGrowthImages({
+      const response = await fetchGrowthImages({
         child: filters.child ?? undefined,
         dateRange: filters.dateRange ?? undefined,
         tags: filters.tags.length > 0 ? filters.tags : undefined,
         page,
         pageSize,
       });
-      setGrowthImages(res.data);
-      initializeLikes(res.data);
-      return res;
+      if (page === 1) setGrowthImages(response.data);
+      initializeLikes(response.data);
+      return response;
     },
     placeholderData: keepPreviousData,
     staleTime: 1000 * 60 * 5,
@@ -40,10 +40,14 @@ export function useGrowthGallery({ page = 1, pageSize = 50, enabled = true }: Op
   return {
     images: query.data?.data ?? [],
     page: query.data?.page ?? page,
+    pageSize: query.data?.pageSize ?? pageSize,
     total: query.data?.total ?? 0,
     totalPages: query.data?.totalPages ?? 0,
+    filters,
     isLoading: query.isLoading,
     isFetching: query.isFetching,
     isError: query.isError,
+    error: query.error,
+    refetch: query.refetch,
   };
 }
